@@ -882,7 +882,7 @@ sm64_options_groups = [
         *move_randomizer_options,
         StrictMoveRequirements,
     ]),
-    OptionGroup("Trap Option", [
+    OptionGroup("Trap Options", [
         *trap_percentage_options,
     ]),
     OptionGroup("Misc Options", [
