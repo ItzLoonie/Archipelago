@@ -740,7 +740,7 @@ class FireTrapPercentage(TrapPercentage):
 
 class ElectricTrapPercentage(TrapPercentage):
     """Percentage of filler items to replace with Shock Traps."""
-    display_name = "Electric Trap Percentage"
+    display_name = "Shock Trap Percentage"
 
 
 class ChuckyaTrapPercentage(TrapPercentage):
@@ -882,10 +882,10 @@ sm64_options_groups = [
         *move_randomizer_options,
         StrictMoveRequirements,
     ]),
-    OptionGroup("Traps", [
+    OptionGroup("Trap Option", [
         *trap_percentage_options,
     ]),
-    OptionGroup("Misc Items", [
+    OptionGroup("Misc Options", [
         *health_refill_percentage_options,
     ]),
     OptionGroup("Cosmetic Options", [
