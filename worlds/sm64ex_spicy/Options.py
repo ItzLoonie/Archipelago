@@ -722,6 +722,123 @@ class MusicShuffle(Choice):
     option_random_on_load = 2
     alias_on = 1
 
+class TrapPercentage(Range):
+    range_start = 0
+    range_end = 100
+    default = 0
+
+
+class BonkTrapPercentage(TrapPercentage):
+    """Percentage of filler items to replace with Bonk Traps."""
+    display_name = "Bonk Trap Percentage"
+
+
+class FireTrapPercentage(TrapPercentage):
+    """Percentage of filler items to replace with Fire Traps."""
+    display_name = "Fire Trap Percentage"
+
+
+class ElectricTrapPercentage(TrapPercentage):
+    """Percentage of filler items to replace with Shock Traps."""
+    display_name = "Electric Trap Percentage"
+
+
+class ChuckyaTrapPercentage(TrapPercentage):
+    """Percentage of filler items to replace with Chuckya Traps."""
+    display_name = "Chuckya Trap Percentage"
+
+
+class SpinTrapPercentage(TrapPercentage):
+    """Percentage of filler items to replace with Spin Traps."""
+    display_name = "Spin Trap Percentage"
+
+
+class GustTrapPercentage(TrapPercentage):
+    """Percentage of filler items to replace with Gust Traps."""
+    display_name = "Gust Trap Percentage"
+
+
+trap_percentage_options = (
+    BonkTrapPercentage,
+    FireTrapPercentage,
+    ElectricTrapPercentage,
+    ChuckyaTrapPercentage,
+    SpinTrapPercentage,
+    GustTrapPercentage,
+)
+
+trap_percentage_option_names = (
+    "bonk_trap_percentage",
+    "fire_trap_percentage",
+    "electric_trap_percentage",
+    "chuckya_trap_percentage",
+    "spin_trap_percentage",
+    "gust_trap_percentage",
+)
+
+trap_item_name_by_percentage_option_name = {
+    "bonk_trap_percentage": "Bonk Trap",
+    "fire_trap_percentage": "Fire Trap",
+    "electric_trap_percentage": "Shock Trap",
+    "chuckya_trap_percentage": "Chuckya Trap",
+    "spin_trap_percentage": "Spin Trap",
+    "gust_trap_percentage": "Gust Trap",
+}
+
+class HealthRefillPercentage(Range):
+    range_start = 0
+    range_end = 100
+    default = 0
+
+
+class OneHealthPipPercentage(HealthRefillPercentage):
+    """Percentage of filler items to replace with 1 Health Pip items."""
+    display_name = "1 Health Pip Percentage"
+
+
+class TwoHealthPipPercentage(HealthRefillPercentage):
+    """Percentage of filler items to replace with 2 Health Pip items."""
+    display_name = "2 Health Pip Percentage"
+
+
+class ThreeHealthPipPercentage(HealthRefillPercentage):
+    """Percentage of filler items to replace with 3 Health Pip items."""
+    display_name = "3 Health Pip Percentage"
+
+
+class FourHealthPipPercentage(HealthRefillPercentage):
+    """Percentage of filler items to replace with 4 Health Pip items."""
+    display_name = "4 Health Pip Percentage"
+
+
+class FullHealthRefillPercentage(HealthRefillPercentage):
+    """Percentage of filler items to replace with Full Health Refill items."""
+    display_name = "Full Health Refill Percentage"
+
+
+health_refill_percentage_options = (
+    OneHealthPipPercentage,
+    TwoHealthPipPercentage,
+    ThreeHealthPipPercentage,
+    FourHealthPipPercentage,
+    FullHealthRefillPercentage,
+)
+
+health_refill_percentage_option_names = (
+    "one_health_pip_percentage",
+    "two_health_pip_percentage",
+    "three_health_pip_percentage",
+    "four_health_pip_percentage",
+    "full_health_refill_percentage",
+)
+
+health_refill_item_name_by_percentage_option_name = {
+    "one_health_pip_percentage": "1 Health Pip",
+    "two_health_pip_percentage": "2 Health Pip",
+    "three_health_pip_percentage": "3 Health Pip",
+    "four_health_pip_percentage": "4 Health Pip",
+    "full_health_refill_percentage": "Full Health Refill",
+}
 
 sm64_options_groups = [
     OptionGroup("Logic Options", [
@@ -764,6 +881,12 @@ sm64_options_groups = [
     OptionGroup("Ability Options", [
         *move_randomizer_options,
         StrictMoveRequirements,
+    ]),
+    OptionGroup("Traps", [
+        *trap_percentage_options,
+    ]),
+    OptionGroup("Misc Items", [
+        *health_refill_percentage_options,
     ]),
     OptionGroup("Cosmetic Options", [
         MarioHatColor,
@@ -852,3 +975,14 @@ class SM64Options(PerGameCommonOptions):
     bowser_in_the_sky_coinsanity_max_coins: BowserInTheSkyCoinsanityMaxCoins
     death_link: DeathLink
     completion_type: CompletionType
+    bonk_trap_percentage: BonkTrapPercentage
+    fire_trap_percentage: FireTrapPercentage
+    electric_trap_percentage: ElectricTrapPercentage
+    chuckya_trap_percentage: ChuckyaTrapPercentage
+    spin_trap_percentage: SpinTrapPercentage
+    gust_trap_percentage: GustTrapPercentage
+    one_health_pip_percentage: OneHealthPipPercentage
+    two_health_pip_percentage: TwoHealthPipPercentage
+    three_health_pip_percentage: ThreeHealthPipPercentage
+    four_health_pip_percentage: FourHealthPipPercentage
+    full_health_refill_percentage: FullHealthRefillPercentage

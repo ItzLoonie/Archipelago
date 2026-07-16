@@ -35,6 +35,9 @@ def progression_deprioritized_skip_balancing_if_blocksanity(options):
         return ItemClassification.progression_deprioritized_skip_balancing
     return ItemClassification.filler
 
+def trap(options):
+    return ItemClassification.trap
+
 
 class SM64Item(Item):
     game: str = "SM64: Spicy Mycena 64"
@@ -199,6 +202,23 @@ starsanity_item_data_table: dict[str, SM64ItemData] = {
     "Tiny-Huge Island - All Stars": SM64ItemData(sm64ex_base_id + 572, progression_deprioritized),
     "Tick Tock Clock - All Stars": SM64ItemData(sm64ex_base_id + 573, progression_deprioritized),
     "Rainbow Ride - All Stars": SM64ItemData(sm64ex_base_id + 574, progression_deprioritized),
+}
+
+health_refill_item_data_table: dict[str, SM64ItemData] = {
+    "1 Health Pip": SM64ItemData(sm64ex_base_id + 1750, filler),
+    "2 Health Pip": SM64ItemData(sm64ex_base_id + 1751, filler),
+    "3 Health Pip": SM64ItemData(sm64ex_base_id + 1752, filler),
+    "4 Health Pip": SM64ItemData(sm64ex_base_id + 1753, filler),
+    "Full Health Refill": SM64ItemData(sm64ex_base_id + 1754, filler),
+}
+
+trap_item_data_table: dict[str, SM64ItemData] = {
+    "Bonk Trap": SM64ItemData(sm64ex_base_id + 1760, trap),
+    "Fire Trap": SM64ItemData(sm64ex_base_id + 1761, trap),
+    "Shock Trap": SM64ItemData(sm64ex_base_id + 1762, trap),
+    "Chuckya Trap": SM64ItemData(sm64ex_base_id + 1763, trap),
+    "Spin Trap": SM64ItemData(sm64ex_base_id + 1764, trap),
+    "Gust Trap": SM64ItemData(sm64ex_base_id + 1765, trap),
 }
 
 arbitrary_item_data_table: dict[str, SM64ItemData] = {
@@ -478,7 +498,9 @@ item_data_table = {
     **per_level_action_item_data_table,
     **cannon_item_data_table,
     **painting_unlock_item_data_table,
-    **starsanity_item_data_table
+    **starsanity_item_data_table,
+    **health_refill_item_data_table,
+    **trap_item_data_table
 }
 
 item_table = {name: data.code for name, data in item_data_table.items() if data.code is not None}
@@ -504,4 +526,6 @@ item_name_groups: dict[str, set[str]] = {
     "Optional Items": set(optional_item_data_table),
     "Filler": {"1-Up Mushroom"},
     "Starsanity": set(starsanity_item_data_table),
+    "Traps": set(trap_item_data_table),
+    "Health Refill Items": set(health_refill_item_data_table),
 }

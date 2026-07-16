@@ -7,12 +7,14 @@ from .Items import item_data_table, action_item_data_table, cannon_item_data_tab
     global_rolling_log_item_names, global_purple_switch_item_names, checkerboard_item_data_table, \
     rolling_log_item_data_table, purple_switch_item_data_table, optional_item_data_table, \
     bowser_stage_1up_item_data_table, randomized_action_item_names, per_level_move_area_names, ut_glitch_item_name, \
-    item_name_groups
+    item_name_groups, starsanity_item_data_table
 from .Locations import location_table, SM64Location, coinsanity_course_data, get_coinsanity_location_name, \
     get_coinsanity_location_names, get_secret_stage_coinsanity_location_names, location_name_groups
 from .Music import build_music_slot_data
 from .Options import sm64_options_groups, SM64Options, coin_star_requirement_option_names, \
-    move_randomizer_option_name_by_action, secret_stage_coinsanity_max_coin_option_names
+    move_randomizer_option_name_by_action, secret_stage_coinsanity_max_coin_option_names, \
+    trap_percentage_option_names, trap_item_name_by_percentage_option_name, \
+    health_refill_percentage_option_names, health_refill_item_name_by_percentage_option_name
 from .Rules import set_rules
 from .Regions import create_regions, sm64_entrance_to_region, sm64_level_to_entrances, SM64Levels
 from BaseClasses import Item, Tutorial
@@ -72,6 +74,7 @@ class SM64World(World):
         "buddy_checks",
         "one_up_checks",
         "blocksanity",
+        "starsanity",
         "easy_butterflies",
         "no_despawns",
         "combined_progressive_keys",
@@ -115,6 +118,10 @@ class SM64World(World):
         "secret_stage_coinsanity",
         *secret_stage_coinsanity_max_coin_option_names,
         *coin_star_requirement_option_names,
+        *secret_stage_coinsanity_max_coin_option_names,
+        *coin_star_requirement_option_names,
+        *trap_percentage_option_names,
+        *health_refill_percentage_option_names,
         "death_link",
         "completion_type",
     )
@@ -324,6 +331,8 @@ class SM64World(World):
             item_names += list(cannon_item_data_table)
         if self.options.enable_locked_paintings:
             item_names += list(painting_unlock_item_data_table)
+        if self.options.starsanity:
+            item_names += list(starsanity_item_data_table)
 
         item_names += self.get_action_item_names()
 
@@ -393,6 +402,26 @@ class SM64World(World):
             locked_count += len(cannon_item_data_table)
         return locked_count
 
+    def get_filler_replacement_item_names(self, filler_count: int) -> typing.List[str]:
+        replacement_names: typing.List[str] = []
+        remaining = filler_count
+        item_name_by_option_name = {
+            **trap_item_name_by_percentage_option_name,
+            **health_refill_item_name_by_percentage_option_name,
+        }
+        for option_name in (*trap_percentage_option_names, *health_refill_percentage_option_names):
+            if remaining <= 0:
+                break
+            percentage = getattr(self.options, option_name).value
+            if percentage <= 0:
+                continue
+            count = min((filler_count * percentage) // 100, remaining)
+            if count <= 0:
+                continue
+            replacement_names += [item_name_by_option_name[option_name]] * count
+            remaining -= count
+        return replacement_names
+
     def create_items(self):
         item_names = self.get_progression_item_names()
         item_names += self.get_optional_item_names()
@@ -403,7 +432,11 @@ class SM64World(World):
                               f"required items than randomized locations.")
 
         self.multiworld.itempool += [self.create_item(item_name) for item_name in item_names]
-        self.multiworld.itempool += [self.create_item("1-Up Mushroom") for i in range(0, self.filler_count)]
+
+        replacement_item_names = self.get_filler_replacement_item_names(self.filler_count)
+        plain_filler_count = self.filler_count - len(replacement_item_names)
+        self.multiworld.itempool += [self.create_item(item_name) for item_name in replacement_item_names]
+        self.multiworld.itempool += [self.create_item("1-Up Mushroom") for i in range(0, plain_filler_count)]
 
     def generate_basic(self):
         if not self.options.buddy_checks:
@@ -500,6 +533,7 @@ class SM64World(World):
             "BowserStage1UpBehavior": self.options.bowser_stage_1ups.value != self.options.bowser_stage_1ups.option_vanilla,
             "OneUpChecks": self.options.one_up_checks.value,
             "Blocksanity": self.options.blocksanity.value,
+            "Starsanity": self.options.starsanity.value,
             "BuddyChecks": self.options.buddy_checks.value,
             "EasyButterflies": self.options.easy_butterflies.value,
             "NoDespawn": self.options.no_despawns.value,
