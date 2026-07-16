@@ -40,7 +40,7 @@ def trap(options):
 
 
 class SM64Item(Item):
-    game: str = "SM64: Spicy Mycena 64"
+    game: str = "SM64: Spiced Myceria 64"
 
 
 class SM64ItemData(NamedTuple):

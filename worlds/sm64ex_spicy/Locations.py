@@ -1,7 +1,7 @@
 from BaseClasses import Location
 
 class SM64Location(Location):
-    game: str = "SM64: Spicy Mycena 64"
+    game: str = "SM64: Spiced Myceria 64"
 
 coinsanity_location_base_id = 3627000
 
