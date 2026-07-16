@@ -610,6 +610,24 @@ locBlocksanity_table = {
     "Wing Mario Over the Rainbow - Overlooking Bob-omb Buddy Cloud Wing Cap Block": 3629860,
 }
 
+locStarsanity_table = {
+    "Bob-omb Battlefield - All Stars": 3629861,
+    "Whomp's Fortress - All Stars": 3629862,
+    "Jolly Roger Bay - All Stars": 3629863,
+    "Cool, Cool Mountain - All Stars": 3629864,
+    "Big Boo's Haunt - All Stars": 3629865,
+    "Hazy Maze Cave - All Stars": 3629866,
+    "Lethal Lava Land - All Stars": 3629867,
+    "Shifting Sand Land - All Stars": 3629868,
+    "Dire, Dire Docks - All Stars": 3629869,
+    "Snowman's Land - All Stars": 3629870,
+    "Wet-Dry World - All Stars": 3629871,
+    "Tall, Tall Mountain - All Stars": 3629872,
+    "Tiny-Huge Island - All Stars": 3629873,
+    "Tick Tock Clock - All Stars": 3629874,
+    "Rainbow Ride - All Stars": 3629875,
+}
+
 # Correspond to 3626000 + course index * 7 + star index, then secret stars, then keys, then Coin Stars
 location_table = {**locBoB_table,**locWhomp_table,**locJRB_table,**locCCM_table,**locBBH_table, \
                   **locHMC_table,**locLLL_table,**locSSL_table,**locDDD_table,**locSL_table, \
@@ -617,7 +635,7 @@ location_table = {**locBoB_table,**locWhomp_table,**locJRB_table,**locCCM_table,
                   **loc100Coin_table,**locPSS_table,**locSA_table,**locBitDW_table,**locTotWC_table, \
                   **locCotMC_table, **locVCutM_table, **locBitFS_table, **locWMotR_table, **locBitS_table, \
                   **locSS_table, **locBasement_table, **locFreestanding1Up_table, **locBlocksanity_table, \
-                  **coinsanity_location_table}
+                  **locStarsanity_table, **coinsanity_location_table}
 
 loc1UpBlock_table = {
     location_name: location_table[location_name]
@@ -722,6 +740,7 @@ location_name_groups.update({
     "1-Ups from Blocks": set(loc1UpBlock_table),
     "Freestanding 1-Ups": set(locFreestanding1Up_table),
     "Blocksanity": set(locBlocksanity_table),
+    "Starsanity": set(locStarsanity_table),
     "1-Up Blocks": {
         location_name for location_name in locBlocksanity_table if "1-Up Block" in location_name
     },

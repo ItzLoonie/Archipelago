@@ -183,6 +183,24 @@ bowser_stage_1up_item_data_table: dict[str, SM64ItemData] = {
     "Bowser in the Fire Sea - Extra 1-Ups": SM64ItemData(sm64ex_base_id + 558, progression_deprioritized),
 }
 
+starsanity_item_data_table: dict[str, SM64ItemData] = {
+    "Bob-omb Battlefield - All Stars": SM64ItemData(sm64ex_base_id + 560, progression_deprioritized),
+    "Whomp's Fortress - All Stars": SM64ItemData(sm64ex_base_id + 561, progression_deprioritized),
+    "Jolly Roger Bay - All Stars": SM64ItemData(sm64ex_base_id + 562, progression_deprioritized),
+    "Cool, Cool Mountain - All Stars": SM64ItemData(sm64ex_base_id + 563, progression_deprioritized),
+    "Big Boo's Haunt - All Stars": SM64ItemData(sm64ex_base_id + 564, progression_deprioritized),
+    "Hazy Maze Cave - All Stars": SM64ItemData(sm64ex_base_id + 565, progression_deprioritized),
+    "Lethal Lava Land - All Stars": SM64ItemData(sm64ex_base_id + 566, progression_deprioritized),
+    "Shifting Sand Land - All Stars": SM64ItemData(sm64ex_base_id + 567, progression_deprioritized),
+    "Dire, Dire Docks - All Stars": SM64ItemData(sm64ex_base_id + 568, progression_deprioritized),
+    "Snowman's Land - All Stars": SM64ItemData(sm64ex_base_id + 569, progression_deprioritized),
+    "Wet-Dry World - All Stars": SM64ItemData(sm64ex_base_id + 570, progression_deprioritized),
+    "Tall, Tall Mountain - All Stars": SM64ItemData(sm64ex_base_id + 571, progression_deprioritized),
+    "Tiny-Huge Island - All Stars": SM64ItemData(sm64ex_base_id + 572, progression_deprioritized),
+    "Tick Tock Clock - All Stars": SM64ItemData(sm64ex_base_id + 573, progression_deprioritized),
+    "Rainbow Ride - All Stars": SM64ItemData(sm64ex_base_id + 574, progression_deprioritized),
+}
+
 arbitrary_item_data_table: dict[str, SM64ItemData] = {
     **simple_arbitrary_item_data_table,
     **global_arbitrary_item_data_table,
@@ -459,7 +477,8 @@ item_data_table = {
     **action_item_data_table,
     **per_level_action_item_data_table,
     **cannon_item_data_table,
-    **painting_unlock_item_data_table
+    **painting_unlock_item_data_table,
+    **starsanity_item_data_table
 }
 
 item_table = {name: data.code for name, data in item_data_table.items() if data.code is not None}
@@ -484,4 +503,5 @@ item_name_groups: dict[str, set[str]] = {
     "Bowser Stage Extra 1-Up Unlocks": set(bowser_stage_1up_item_data_table),
     "Optional Items": set(optional_item_data_table),
     "Filler": {"1-Up Mushroom"},
+    "Starsanity": set(starsanity_item_data_table),
 }

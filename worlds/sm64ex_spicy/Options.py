@@ -423,6 +423,9 @@ class Blocksanity(Toggle):
     """Include coin blocks, cap blocks, shell blocks, and star blocks as Archipelago location checks."""
     display_name = "Blocksanity"
 
+class Starsanity(Toggle):
+    """Include an additional check for each of the 15 main courses for collecting every Power Star."""
+    display_name = "Starsanity"
 
 class EasyButterflies(Toggle):
     """Butterflies turn into 1-Up mushrooms regardless of Mario's distance from the butterfly, and one of the three
@@ -726,6 +729,7 @@ sm64_options_groups = [
         BuddyChecks,
         OneUpChecks,
         Blocksanity,
+        Starsanity,
         EasyButterflies,
         NoDespawns,
         CombinedProgressiveKeys,
@@ -780,6 +784,7 @@ class SM64Options(PerGameCommonOptions):
     buddy_checks: BuddyChecks
     one_up_checks: OneUpChecks
     blocksanity: Blocksanity
+    starsanity: Starsanity
     easy_butterflies: EasyButterflies
     no_despawns: NoDespawns
     combined_progressive_keys: CombinedProgressiveKeys

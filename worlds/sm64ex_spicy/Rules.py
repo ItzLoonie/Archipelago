@@ -20,6 +20,144 @@ initial_reachable_entrances = (
 )
 minimum_starting_check_count = 2
 
+starsanity_course_star_locations = {
+    "Bob-omb Battlefield": (
+        "Bob-omb Battlefield - Big Bob-Omb on the Summit",
+        "Bob-omb Battlefield - Footrace with Koopa The Quick",
+        "Bob-omb Battlefield - Shoot to the Island in the Sky",
+        "Bob-omb Battlefield - Find the 8 Red Coins",
+        "Bob-omb Battlefield - Mario Wings to the Sky",
+        "Bob-omb Battlefield - Behind Chain Chomp's Gate",
+        "Bob-omb Battlefield - Coins Star",
+    ),
+    "Whomp's Fortress": (
+        "Whomp's Fortress - Chip Off Whomp's Block",
+        "Whomp's Fortress - To the Top of the Fortress",
+        "Whomp's Fortress - Shoot into the Wild Blue",
+        "Whomp's Fortress - Red Coins on the Floating Isle",
+        "Whomp's Fortress - Fall onto the Caged Island",
+        "Whomp's Fortress - Blast Away the Wall",
+        "Whomp's Fortress - Coins Star",
+    ),
+    "Jolly Roger Bay": (
+        "Jolly Roger Bay - Plunder in the Sunken Ship",
+        "Jolly Roger Bay - Can the Eel Come Out to Play?",
+        "Jolly Roger Bay - Treasure of the Ocean Cave",
+        "Jolly Roger Bay - Red Coins on the Ship Afloat",
+        "Jolly Roger Bay - Blast to the Stone Pillar",
+        "Jolly Roger Bay - Through the Jet Stream",
+        "Jolly Roger Bay - Coins Star",
+    ),
+    "Cool, Cool Mountain": (
+        "Cool, Cool Mountain - Slip Slidin' Away",
+        "Cool, Cool Mountain - Li'l Penguin Lost",
+        "Cool, Cool Mountain - Big Penguin Race",
+        "Cool, Cool Mountain - Frosty Slide for 8 Red Coins",
+        "Cool, Cool Mountain - Snowman's Lost His Head",
+        "Cool, Cool Mountain - Wall Kicks Will Work",
+        "Cool, Cool Mountain - Coins Star",
+    ),
+    "Big Boo's Haunt": (
+        "Big Boo's Haunt - Go on a Ghost Hunt",
+        "Big Boo's Haunt - Ride Big Boo's Merry-Go-Round",
+        "Big Boo's Haunt - Secret of the Haunted Books",
+        "Big Boo's Haunt - Seek the 8 Red Coins",
+        "Big Boo's Haunt - Big Boo's Balcony",
+        "Big Boo's Haunt - Eye to Eye in the Secret Room",
+        "Big Boo's Haunt - Coins Star",
+    ),
+    "Hazy Maze Cave": (
+        "Hazy Maze Cave - Swimming Beast in the Cavern",
+        "Hazy Maze Cave - Elevate for 8 Red Coins",
+        "Hazy Maze Cave - Metal-Head Mario Can Move!",
+        "Hazy Maze Cave - Navigating the Toxic Maze",
+        "Hazy Maze Cave - A-Maze-Ing Emergency Exit",
+        "Hazy Maze Cave - Watch for Rolling Rocks",
+        "Hazy Maze Cave - Coins Star",
+    ),
+    "Lethal Lava Land": (
+        "Lethal Lava Land - Boil the Big Bully",
+        "Lethal Lava Land - Bully the Bullies",
+        "Lethal Lava Land - 8-Coin Puzzle with 15 Pieces",
+        "Lethal Lava Land - Red-Hot Log Rolling",
+        "Lethal Lava Land - Hot-Foot-It into the Volcano",
+        "Lethal Lava Land - Elevator Tour in the Volcano",
+        "Lethal Lava Land - Coins Star",
+    ),
+    "Shifting Sand Land": (
+        "Shifting Sand Land - In the Talons of the Big Bird",
+        "Shifting Sand Land - Shining Atop the Pyramid",
+        "Shifting Sand Land - Inside the Ancient Pyramid",
+        "Shifting Sand Land - Stand Tall on the Four Pillars",
+        "Shifting Sand Land - Free Flying for 8 Red Coins",
+        "Shifting Sand Land - Pyramid Puzzle",
+        "Shifting Sand Land - Coins Star",
+    ),
+    "Dire, Dire Docks": (
+        "Dire, Dire Docks - Board Bowser's Sub",
+        "Dire, Dire Docks - Chests in the Current",
+        "Dire, Dire Docks - Pole-Jumping for Red Coins",
+        "Dire, Dire Docks - Through the Jet Stream",
+        "Dire, Dire Docks - The Manta Ray's Reward",
+        "Dire, Dire Docks - Collect the Caps...",
+        "Dire, Dire Docks - Coins Star",
+    ),
+    "Snowman's Land": (
+        "Snowman's Land - Snowman's Big Head",
+        "Snowman's Land - Chill with the Bully",
+        "Snowman's Land - In the Deep Freeze",
+        "Snowman's Land - Whirl from the Freezing Pond",
+        "Snowman's Land - Shell Shreddin' for Red Coins",
+        "Snowman's Land - Into the Igloo",
+        "Snowman's Land - Coins Star",
+    ),
+    "Wet-Dry World": (
+        "Wet-Dry World - Shocking Arrow Lifts!",
+        "Wet-Dry World - Top o' the Town",
+        "Wet-Dry World - Secrets in the Shallows & Sky",
+        "Wet-Dry World - Express Elevator--Hurry Up!",
+        "Wet-Dry World - Go to Town for Red Coins",
+        "Wet-Dry World - Quick Race Through Downtown!",
+        "Wet-Dry World - Coins Star",
+    ),
+    "Tall, Tall Mountain": (
+        "Tall, Tall Mountain - Scale the Mountain",
+        "Tall, Tall Mountain - Mystery of the Monkey Cage",
+        "Tall, Tall Mountain - Scary 'Shrooms, Red Coins",
+        "Tall, Tall Mountain - Mysterious Mountainside",
+        "Tall, Tall Mountain - Breathtaking View from Bridge",
+        "Tall, Tall Mountain - Blast to the Lonely Mushroom",
+        "Tall, Tall Mountain - Coins Star",
+    ),
+    "Tiny-Huge Island": (
+        "Tiny-Huge Island - Pluck the Piranha Flower",
+        "Tiny-Huge Island - The Tip Top of the Huge Island",
+        "Tiny-Huge Island - Rematch with Koopa the Quick",
+        "Tiny-Huge Island - Five Itty Bitty Secrets",
+        "Tiny-Huge Island - Wiggler's Red Coins",
+        "Tiny-Huge Island - Make Wiggler Squirm",
+        "Tiny-Huge Island - Coins Star",
+    ),
+    "Tick Tock Clock": (
+        "Tick Tock Clock - Roll into the Cage",
+        "Tick Tock Clock - The Pit and the Pendulums",
+        "Tick Tock Clock - Get a Hand",
+        "Tick Tock Clock - Stomp on the Thwomp",
+        "Tick Tock Clock - Timed Jumps on Moving Bars",
+        "Tick Tock Clock - Stop Time for Red Coins",
+        "Tick Tock Clock - Coins Star",
+    ),
+    "Rainbow Ride": (
+        "Rainbow Ride - Cruiser Crossing the Rainbow",
+        "Rainbow Ride - The Big House in the Sky",
+        "Rainbow Ride - Coins Amassed in a Maze",
+        "Rainbow Ride - Swingin' in the Breeze",
+        "Rainbow Ride - Tricky Triangles!",
+        "Rainbow Ride - Somewhere Over the Rainbow",
+        "Rainbow Ride - Coins Star",
+    ),
+}
+
 simple_arbitrary_feature_options = {
     "HMC_SWIMMING_BEAST": ("Hazy Maze Cave - Swimming Beast", "hazy_maze_cave_swimming_beast"),
     "RR_CARPETS": ("Rainbow Ride - Carpets", "rainbow_ride_carpets"),
@@ -1157,6 +1295,7 @@ def set_rules(multiworld: MultiWorld, options: SM64Options, player: int, area_co
                    "PURPLE_SWITCHES | MOVELESS")
     rf.assign_rule("Bowser in the Sky - Top",
                    "CL | MOVELESS & TJ+WK+LG")
+    
     if options.blocksanity:
         blocksanity_rules = {
             "Big Boo's Haunt - Back Entrance Vanish Cap Block": "VC",
@@ -1313,6 +1452,16 @@ def set_rules(multiworld: MultiWorld, options: SM64Options, player: int, area_co
         course_name, coin_count = coinsanity_location
         coin_rule = coinsanity_coin_rules[course_name]
         set_rule(location, lambda state, rule=coin_rule, count=coin_count: rule(state, player, count))
+
+    # Starsanity
+    if options.starsanity:
+        for course_name, star_location_names in starsanity_course_star_locations.items():
+            add_rule(
+                multiworld.get_location(f"{course_name} - All Stars", player),
+                lambda state, locations=star_location_names: all(
+                    state.can_reach(location_name, "Location", player) for location_name in locations
+                )
+            )
 
     # Castle Stars
     rf.assign_rule("Castle - Roof", "CANN")
