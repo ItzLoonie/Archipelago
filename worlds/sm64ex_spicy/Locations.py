@@ -610,6 +610,28 @@ locBlocksanity_table = {
     "Wing Mario Over the Rainbow - Overlooking Bob-omb Buddy Cloud Wing Cap Block": 3629860,
 }
 
+locBlocksanityCapBlock_table = {
+    location_name: location_id for location_name, location_id in locBlocksanity_table.items()
+    if "Cap Block" in location_name
+}
+locBlocksanityCoinBlock_table = {
+    location_name: location_id for location_name, location_id in locBlocksanity_table.items()
+    if " Coins Block" in location_name
+}
+locBlocksanityShellBlock_table = {
+    location_name: location_id for location_name, location_id in locBlocksanity_table.items()
+    if "Shell Block" in location_name
+}
+locBlocksanityStarBlock_table = {
+    location_name: location_id for location_name, location_id in locBlocksanity_table.items()
+    if "Star Block" in location_name
+}
+locBlocksanityOneUpBlock_table = {
+    location_name: location_id for location_name, location_id in locBlocksanity_table.items()
+    if "1-Up Block" in location_name
+}
+
+
 # Correspond to 3626000 + course index * 7 + star index, then secret stars, then keys, then Coin Stars
 location_table = {**locBoB_table,**locWhomp_table,**locJRB_table,**locCCM_table,**locBBH_table, \
                   **locHMC_table,**locLLL_table,**locSSL_table,**locDDD_table,**locSL_table, \
@@ -653,8 +675,9 @@ loc1UpBlock_table = {
         "Bowser in the Sky - 1-Up",
     )
 }
-locOneUp_table = {**loc1UpBlock_table, **locFreestanding1Up_table}
 
+
+locOneUp_table = {**loc1UpBlock_table, **locFreestanding1Up_table}
 
 def _locations_with_prefix(prefix: str) -> set[str]:
     return {
@@ -722,21 +745,11 @@ location_name_groups.update({
     "1-Ups from Blocks": set(loc1UpBlock_table),
     "Freestanding 1-Ups": set(locFreestanding1Up_table),
     "Blocksanity": set(locBlocksanity_table),
-    "1-Up Blocks": {
-        location_name for location_name in locBlocksanity_table if "1-Up Block" in location_name
-    },
-    "Cap Blocks": {
-        location_name for location_name in locBlocksanity_table if "Cap Block" in location_name
-    },
-    "Coin Blocks": {
-        location_name for location_name in locBlocksanity_table if " Coins Block" in location_name
-    },
-    "Shell Blocks": {
-        location_name for location_name in locBlocksanity_table if "Shell Block" in location_name
-    },
-    "Star Blocks": {
-        location_name for location_name in locBlocksanity_table if "Star Block" in location_name
-    },
+    "1-Up Blocks": set(locBlocksanityOneUpBlock_table),
+    "Cap Blocks": set(locBlocksanityCapBlock_table),
+    "Coin Blocks": set(locBlocksanityCoinBlock_table),
+    "Shell Blocks": set(locBlocksanityShellBlock_table),
+    "Star Blocks": set(locBlocksanityStarBlock_table),
     "Bob-omb Buddies": {
         location_name for location_name in location_table if location_name.endswith(" - Bob-omb Buddy")
     },

@@ -9,7 +9,8 @@ from .Locations import SM64Location, location_table, locBoB_table, locWhomp_tabl
     locWDW_table, locTTM_table, locTHI_table, locTTC_table, locRR_table, \
     locPSS_table, locSA_table, locBitDW_table, locTotWC_table, locCotMC_table, \
     locVCutM_table, locBitFS_table, locWMotR_table, locBitS_table, locSS_table, locBasement_table, \
-    locOneUp_table, locBlocksanity_table
+    locOneUp_table, locBlocksanityCapBlock_table, locBlocksanityCoinBlock_table, \
+    locBlocksanityShellBlock_table, locBlocksanityStarBlock_table, locBlocksanityOneUpBlock_table
 
 
 class SM64Levels(int, Enum):
@@ -584,8 +585,16 @@ def create_regions(multiworld: MultiWorld, options: SM64Options, player: int):
 
     if not options.one_up_checks:
         remove_locs(multiworld, player, set(locOneUp_table))
-    if not options.blocksanity:
-        remove_locs(multiworld, player, set(locBlocksanity_table))
+    if not options.blocksanity_cap_blocks:
+        remove_locs(multiworld, player, set(locBlocksanityCapBlock_table))
+    if not options.blocksanity_coin_blocks:
+        remove_locs(multiworld, player, set(locBlocksanityCoinBlock_table))
+    if not options.blocksanity_shell_blocks:
+        remove_locs(multiworld, player, set(locBlocksanityShellBlock_table))
+    if not options.blocksanity_star_blocks:
+        remove_locs(multiworld, player, set(locBlocksanityStarBlock_table))
+    if not options.blocksanity_one_up_blocks:
+        remove_locs(multiworld, player, set(locBlocksanityOneUpBlock_table))
 
 
 def connect_regions(multiworld: MultiWorld, player: int, source: str, target: str, rule=None,
