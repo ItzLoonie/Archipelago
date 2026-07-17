@@ -3,7 +3,9 @@ from typing import Callable, Union, Dict, Set
 
 from BaseClasses import CollectionState, Entrance, MultiWorld
 from ..generic.Rules import add_rule, set_rule
-from .Locations import locOneUp_table, location_table, parse_coinsanity_location_name
+from .Locations import locOneUp_table, location_table, parse_coinsanity_location_name, \
+    locBlocksanityCapBlock_table, locBlocksanityCoinBlock_table, locBlocksanityShellBlock_table, \
+    locBlocksanityStarBlock_table, locBlocksanityOneUpBlock_table
 from .Options import SM64Options, move_randomizer_option_name_by_action
 from .Regions import connect_regions, SM64Levels, sm64_entrance_to_region, sm64_level_to_paintings, \
     sm64_level_to_secrets, sm64_secrets_to_level, sm64_entrances_to_level, sm64_level_to_entrances, \
@@ -1157,63 +1159,62 @@ def set_rules(multiworld: MultiWorld, options: SM64Options, player: int, area_co
                    "PURPLE_SWITCHES | MOVELESS")
     rf.assign_rule("Bowser in the Sky - Top",
                    "CL | MOVELESS & TJ+WK+LG")
-    if options.blocksanity:
-        blocksanity_rules = {
-            "Big Boo's Haunt - Back Entrance Vanish Cap Block": "VC",
-            "Big Boo's Haunt - Second Floor Vanish Cap Block": "VC",
-            "Big Boo's Haunt - Secret Room Vanish Cap Block": "VC",
-            "Bowser in the Dark World - Metal Cap Block": "MC",
-            "Bob-omb Battlefield - Near Flower Patches Wing Cap Block": "WC",
-            "Bob-omb Battlefield - Wooden Ramp Wing Cap Block": "WC",
-            "Bob-omb Battlefield - Island Wing Cap Block": "WC",
-            "Castle - Roof Wing Cap Block": "WC",
-            "Cavern of the Metal Cap - First Metal Cap Block": "MC",
-            "Cavern of the Metal Cap - Near Switch Metal Cap Block": "MC",
-            "Dire, Dire Docks - Metal Cap Block": "MC",
-            "Dire, Dire Docks - Vanish Cap Block": "VC",
-            "Hazy Maze Cave - Beginning Metal Cap Block": "MC",
-            "Hazy Maze Cave - Metal-Head Mario Can Move Metal Cap Block": "MC",
-            "Hazy Maze Cave - Toxic Maze Near Empty Alcove Metal Cap Block": "MC",
-            "Hazy Maze Cave - Toxic Maze Near Bats Metal Cap Block": "MC",
-            "Hazy Maze Cave - Toxic Maze Near Twin Monty Mole Holes Metal Cap Block": "MC",
-            "Jolly Roger Bay - Beginning Metal Cap Block": "MC",
-            "Jolly Roger Bay - Ocean Cave Metal Cap Block": "MC",
-            "Jolly Roger Bay - Blast to the Stone Pillar Star Block": "CANN+CL | CANNLESS & MOVELESS | CANN & MOVELESS",
-            "Jolly Roger Bay - Purple Switch Metal Cap Block": "MC",
-            "Jolly Roger Bay - Plunder in the Sunken Ship Star Block": "JRB_SUNKEN_SHIP",
-            "Lethal Lava Land - Wing Cap Block": "WC",
-            "Lethal Lava Land - Koopa Shell Block": "LLL_KOOPA_SHELL",
-            "Rainbow Ride - Somewhere Over the Rainbow Star Block": "CANN",
-            "Snowman's Land - Inside Igloo 1-Up Block": "VC & TJ/SF/BF/WK/LG | MOVELESS & VC",
-            "Snowman's Land - Vanish Cap Block": "VC",
-            "Shifting Sand Land - Outside Pyramid Wing Cap Block": "WC",
-            "Shifting Sand Land - Stone Structure Wing Cap Block": "WC",
-            "Shifting Sand Land - Cannon Wing Cap Block": "WC",
-            "Tower of the Wing Cap - Wing Cap Block": "WC",
-            "Tick Tock Clock - Midway Up 1-Up Block": "TTC_SPINNERS | LJ+LG",
-            "Vanish Cap Under the Moat - Bottom of Slide Vanish Cap Block": "VC",
-            "Vanish Cap Under the Moat - 3 Coins Block": "LG/TJ/BF/SF",
-            "Vanish Cap Under the Moat - Near Switch Vanish Cap Block": "VC",
-            "Wet-Dry World - Shocking Arrow Lifts Star Block":
-                "{Wet-Dry World - Low Water} | {Wet-Dry World - Mid-High Water} | "
-                "{Wet-Dry World - High Water} | {Wet-Dry World - Top} & TJ/LG/LJ",
-            "Wet-Dry World - Wooden Structure 3 Coins Block":
-                "{Wet-Dry World - Mid Water} | {Wet-Dry World - Top} | PURPLE_SWITCHES & LJ",
-            "Wet-Dry World - Downtown Vanish Cap Block": "WDW_WATER_LEVEL_DIAMOND & VC",
-            "Wet-Dry World - Metal Cap Block": "MC",
-            "Wet-Dry World - Quick Race Through Downtown Star Vanish Cap Block": "WDW_WATER_LEVEL_DIAMOND & VC",
-            "Wet-Dry World - Downtown 1-Up Block": "WDW_WATER_LEVEL_DIAMOND",
-            "Whomp's Fortress - Metal Cap Block": "MC",
-            "Wing Mario Over the Rainbow - Highest Cloud Wing Cap Block": "WC",
-            "Wing Mario Over the Rainbow - Cloud Across From Starting Cloud Wing Cap Block":
-                "WC+TJ | {Wing Mario Over the Rainbow - Cannon}",
-            "Wing Mario Over the Rainbow - Starting Cloud Wing Cap Block": "WC",
-            "Wing Mario Over the Rainbow - Lowest Cloud Wing Cap Block": "WC+TJ | WC+MOVELESS | WC+LJ+CAPLESS",
-            "Wing Mario Over the Rainbow - Bob-omb Buddy Platform Wing Cap Block": "WC",
-            "Wing Mario Over the Rainbow - Overlooking Bob-omb Buddy Cloud Wing Cap Block": "WC",
-        }
-        for location_name, rule in blocksanity_rules.items():
-            rf.assign_rule(location_name, rule)
+    blocksanity_rules = {
+        "Big Boo's Haunt - Back Entrance Vanish Cap Block": "VC",
+        "Big Boo's Haunt - Second Floor Vanish Cap Block": "VC",
+        "Big Boo's Haunt - Secret Room Vanish Cap Block": "VC",
+        "Bowser in the Dark World - Metal Cap Block": "MC",
+        "Bob-omb Battlefield - Near Flower Patches Wing Cap Block": "WC",
+        "Bob-omb Battlefield - Wooden Ramp Wing Cap Block": "WC",
+        "Bob-omb Battlefield - Island Wing Cap Block": "WC",
+        "Castle - Roof Wing Cap Block": "WC",
+        "Cavern of the Metal Cap - First Metal Cap Block": "MC",
+        "Cavern of the Metal Cap - Near Switch Metal Cap Block": "MC",
+        "Dire, Dire Docks - Metal Cap Block": "MC",
+        "Dire, Dire Docks - Vanish Cap Block": "VC",
+        "Hazy Maze Cave - Beginning Metal Cap Block": "MC",
+        "Hazy Maze Cave - Metal-Head Mario Can Move Metal Cap Block": "MC",
+        "Hazy Maze Cave - Toxic Maze Near Empty Alcove Metal Cap Block": "MC",
+        "Hazy Maze Cave - Toxic Maze Near Bats Metal Cap Block": "MC",
+        "Hazy Maze Cave - Toxic Maze Near Twin Monty Mole Holes Metal Cap Block": "MC",
+        "Jolly Roger Bay - Beginning Metal Cap Block": "MC",
+        "Jolly Roger Bay - Ocean Cave Metal Cap Block": "MC",
+        "Jolly Roger Bay - Blast to the Stone Pillar Star Block": "CANN+CL | CANNLESS & MOVELESS | CANN & MOVELESS",
+        "Jolly Roger Bay - Purple Switch Metal Cap Block": "MC",
+        "Jolly Roger Bay - Plunder in the Sunken Ship Star Block": "JRB_SUNKEN_SHIP",
+        "Lethal Lava Land - Wing Cap Block": "WC",
+        "Lethal Lava Land - Koopa Shell Block": "LLL_KOOPA_SHELL",
+        "Rainbow Ride - Somewhere Over the Rainbow Star Block": "CANN",
+        "Snowman's Land - Inside Igloo 1-Up Block": "VC & TJ/SF/BF/WK/LG | MOVELESS & VC",
+        "Snowman's Land - Vanish Cap Block": "VC",
+        "Shifting Sand Land - Outside Pyramid Wing Cap Block": "WC",
+        "Shifting Sand Land - Stone Structure Wing Cap Block": "WC",
+        "Shifting Sand Land - Cannon Wing Cap Block": "WC",
+        "Tower of the Wing Cap - Wing Cap Block": "WC",
+        "Tick Tock Clock - Midway Up 1-Up Block": "TTC_SPINNERS | LJ+LG",
+        "Vanish Cap Under the Moat - Bottom of Slide Vanish Cap Block": "VC",
+        "Vanish Cap Under the Moat - 3 Coins Block": "LG/TJ/BF/SF",
+        "Vanish Cap Under the Moat - Near Switch Vanish Cap Block": "VC",
+        "Wet-Dry World - Shocking Arrow Lifts Star Block":
+            "{Wet-Dry World - Low Water} | {Wet-Dry World - Mid-High Water} | "
+            "{Wet-Dry World - High Water} | {Wet-Dry World - Top} & TJ/LG/LJ",
+        "Wet-Dry World - Wooden Structure 3 Coins Block":
+            "{Wet-Dry World - Mid Water} | {Wet-Dry World - Top} | PURPLE_SWITCHES & LJ",
+        "Wet-Dry World - Downtown Vanish Cap Block": "WDW_WATER_LEVEL_DIAMOND & VC",
+        "Wet-Dry World - Metal Cap Block": "MC",
+        "Wet-Dry World - Quick Race Through Downtown Star Vanish Cap Block": "WDW_WATER_LEVEL_DIAMOND & VC",
+        "Wet-Dry World - Downtown 1-Up Block": "WDW_WATER_LEVEL_DIAMOND",
+        "Whomp's Fortress - Metal Cap Block": "MC",
+        "Wing Mario Over the Rainbow - Highest Cloud Wing Cap Block": "WC",
+        "Wing Mario Over the Rainbow - Cloud Across From Starting Cloud Wing Cap Block":
+            "WC+TJ | {Wing Mario Over the Rainbow - Cannon}",
+        "Wing Mario Over the Rainbow - Starting Cloud Wing Cap Block": "WC",
+        "Wing Mario Over the Rainbow - Lowest Cloud Wing Cap Block": "WC+TJ | WC+MOVELESS | WC+LJ+CAPLESS",
+        "Wing Mario Over the Rainbow - Bob-omb Buddy Platform Wing Cap Block": "WC",
+        "Wing Mario Over the Rainbow - Overlooking Bob-omb Buddy Cloud Wing Cap Block": "WC",
+    }
+    for location_name, rule in blocksanity_rules.items():
+        rf.assign_rule(location_name, rule)
     # Coin Stars
     set_rule(
         multiworld.get_location("Bob-omb Battlefield - Coins Star", player),
@@ -1466,6 +1467,16 @@ class RuleFactory:
 
     def assign_rule(self, target_name: str, rule_expr: str):
         if target_name in locOneUp_table and not self.options.one_up_checks:
+            return
+        if target_name in locBlocksanityCapBlock_table and not self.options.blocksanity_cap_blocks:
+            return
+        if target_name in locBlocksanityCoinBlock_table and not self.options.blocksanity_coin_blocks:
+            return
+        if target_name in locBlocksanityShellBlock_table and not self.options.blocksanity_shell_blocks:
+            return
+        if target_name in locBlocksanityStarBlock_table and not self.options.blocksanity_star_blocks:
+            return
+        if target_name in locBlocksanityOneUpBlock_table and not self.options.blocksanity_one_up_blocks:
             return
         target = self.multiworld.get_location(target_name, self.player) if target_name in location_table else self.multiworld.get_entrance(target_name, self.player)
         cannon_name = self.get_cannon_item_name(target_name)

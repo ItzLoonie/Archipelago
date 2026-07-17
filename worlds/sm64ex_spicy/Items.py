@@ -30,8 +30,8 @@ def filler(options):
     return ItemClassification.filler
 
 
-def progression_deprioritized_skip_balancing_if_blocksanity(options):
-    if options.blocksanity:
+def progression_deprioritized_skip_balancing_if_blocksanity_cap_blocks(options):
+    if options.blocksanity_cap_blocks:
         return ItemClassification.progression_deprioritized_skip_balancing
     return ItemClassification.filler
     
@@ -106,22 +106,22 @@ castle_progression_item_data_table: dict[str, SM64ItemData] = {
 cap_item_data_table: dict[str, SM64ItemData] = {
     "Bob-omb Battlefield - Wing Cap": SM64ItemData(sm64ex_base_id + 277),
     "Castle - Wing Cap": SM64ItemData(
-        sm64ex_base_id + 278, progression_deprioritized_skip_balancing_if_blocksanity),
+        sm64ex_base_id + 278, progression_deprioritized_skip_balancing_if_blocksanity_cap_blocks),
     "Lethal Lava Land - Wing Cap": SM64ItemData(sm64ex_base_id + 279, progression_deprioritized_skip_balancing),
     "Shifting Sand Land - Wing Cap": SM64ItemData(sm64ex_base_id + 280, progression_deprioritized),
     "Tower of the Wing Cap - Wing Cap": SM64ItemData(
-        sm64ex_base_id + 281, progression_deprioritized_skip_balancing_if_blocksanity),
+        sm64ex_base_id + 281, progression_deprioritized_skip_balancing_if_blocksanity_cap_blocks),
     "Wing Mario Over the Rainbow - Wing Cap": SM64ItemData(sm64ex_base_id + 282),
     "Whomp's Fortress - Metal Cap": SM64ItemData(
-        sm64ex_base_id + 283, progression_deprioritized_skip_balancing_if_blocksanity),
+        sm64ex_base_id + 283, progression_deprioritized_skip_balancing_if_blocksanity_cap_blocks),
     "Jolly Roger Bay - Metal Cap": SM64ItemData(sm64ex_base_id + 284, progression_deprioritized),
     "Hazy Maze Cave - Metal Cap": SM64ItemData(sm64ex_base_id + 285, progression_deprioritized),
     "Dire, Dire Docks - Metal Cap": SM64ItemData(sm64ex_base_id + 286, progression_deprioritized),
     "Wet-Dry World - Metal Cap": SM64ItemData(
-        sm64ex_base_id + 287, progression_deprioritized_skip_balancing_if_blocksanity),
+        sm64ex_base_id + 287, progression_deprioritized_skip_balancing_if_blocksanity_cap_blocks),
     "Cavern of the Metal Cap - Metal Cap": SM64ItemData(sm64ex_base_id + 288, progression_deprioritized),
     "Bowser in the Dark World - Metal Cap": SM64ItemData(
-        sm64ex_base_id + 289, progression_deprioritized_skip_balancing_if_blocksanity),
+        sm64ex_base_id + 289, progression_deprioritized_skip_balancing_if_blocksanity_cap_blocks),
     "Big Boo's Haunt - Vanish Cap": SM64ItemData(sm64ex_base_id + 290, progression_deprioritized),
     "Dire, Dire Docks - Vanish Cap": SM64ItemData(sm64ex_base_id + 291, progression_deprioritized),
     "Snowman's Land - Vanish Cap": SM64ItemData(sm64ex_base_id + 292, progression_deprioritized),

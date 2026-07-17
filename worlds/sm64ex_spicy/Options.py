@@ -419,9 +419,29 @@ class OneUpChecks(Toggle):
     display_name = "1-Up Checks"
 
 
-class Blocksanity(Toggle):
-    """Include coin blocks, cap blocks, shell blocks, and star blocks as Archipelago location checks."""
-    display_name = "Blocksanity"
+class BlocksanityCapBlocks(Toggle):
+    """Include Wing Cap, Metal Cap, and Vanish Cap blocks as location checks."""
+    display_name = "Cap Blocks"
+
+
+class BlocksanityCoinBlocks(Toggle):
+    """Include coin blocks as location checks."""
+    display_name = "Coin Blocks"
+
+
+class BlocksanityShellBlocks(Toggle):
+    """Include Koopa Shell blocks as location checks."""
+    display_name = "Shell Blocks"
+
+
+class BlocksanityStarBlocks(Toggle):
+    """Include Power Star blocks as location checks."""
+    display_name = "Star Blocks"
+
+
+class BlocksanityOneUpBlocks(Toggle):
+    """Include 1-Up Mushroom blocks as location checks."""
+    display_name = "1-Up Blocks"
 
 
 class EasyButterflies(Toggle):
@@ -847,7 +867,6 @@ sm64_options_groups = [
         AreaRandomizer,
         BuddyChecks,
         OneUpChecks,
-        Blocksanity,
         EasyButterflies,
         NoDespawns,
         CombinedProgressiveKeys,
@@ -855,6 +874,13 @@ sm64_options_groups = [
         StrictCapRequirements,
         PerLevelCapItems,
         StrictCannonRequirements,
+    ]),
+    OptionGroup("Blocksanity Options", [
+        BlocksanityCapBlocks,
+        BlocksanityCoinBlocks,
+        BlocksanityShellBlocks,
+        BlocksanityStarBlocks,
+        BlocksanityOneUpBlocks,
     ]),
     OptionGroup("Level Feature Unlocks", [
         HazyMazeCaveSwimmingBeast,
@@ -905,7 +931,11 @@ class SM64Options(PerGameCommonOptions):
     area_rando: AreaRandomizer
     buddy_checks: BuddyChecks
     one_up_checks: OneUpChecks
-    blocksanity: Blocksanity
+    blocksanity_cap_blocks: BlocksanityCapBlocks
+    blocksanity_coin_blocks: BlocksanityCoinBlocks
+    blocksanity_shell_blocks: BlocksanityShellBlocks
+    blocksanity_star_blocks: BlocksanityStarBlocks
+    blocksanity_one_up_blocks: BlocksanityOneUpBlocks
     easy_butterflies: EasyButterflies
     no_despawns: NoDespawns
     combined_progressive_keys: CombinedProgressiveKeys
