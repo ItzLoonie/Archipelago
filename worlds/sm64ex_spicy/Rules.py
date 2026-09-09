@@ -946,7 +946,7 @@ def set_rules(multiworld: MultiWorld, options: SM64Options, player: int, area_co
         "TJ/SF/BF | logic_ssl_top_of_stone_structure_spin_jump_or_tweesters")
     rf.assign_rule(
         "Shifting Sand Land - Upper Pyramid",
-        "CL")
+        "CL & TJ/SF/BF/LG/WK")
     rf.assign_rule(
         "Shifting Sand Land - Pyramid Top Entry Elevator Route",
         "SSL_PYRAMID_ELEVATOR")
@@ -963,7 +963,7 @@ def set_rules(multiworld: MultiWorld, options: SM64Options, player: int, area_co
     rf.assign_rule("Shifting Sand Land - Bob-omb Buddy", "BOBOMB_BUDDY")
     rf.assign_rule(
         "Shifting Sand Land - Pyramid Above the First Wire Grid 1-Up",
-        "{Shifting Sand Land - Upper Pyramid} | CL/TJ/SF/BF")
+        "CL/TJ/SF/BF")
     # Dire, Dire Docks
     rf.assign_rule("Dire, Dire Docks - Board Bowser's Sub",
                    "PURPLE_SWITCHES & DDD_BOWSER_SUB | logic_ddd_board_bowsers_sub_triple_jump")

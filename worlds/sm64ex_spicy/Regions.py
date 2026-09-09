@@ -414,14 +414,15 @@ def create_regions(multiworld: MultiWorld, options: SM64Options, player: int):
                 "Shifting Sand Land - Pyramid Grindel 1-Up",
                 "Shifting Sand Land - Pyramid Above the First Wire Grid 1-Up",
                 "Shifting Sand Land - Pyramid Left Path 1-Up Block",
-                "Shifting Sand Land - Pyramid Back 1-Up Block")
+                "Shifting Sand Land - Pyramid Back 1-Up Block",
+                "Shifting Sand Land - Pyramid Platform Triggers 1-Up")
     ssl_upper_pyramid_entrance = create_region(
         "Shifting Sand Land - Upper Pyramid Entrance", player, multiworld)
     ssl_pyramid_top_entry = create_region(
         "Shifting Sand Land - Pyramid Top Entry", player, multiworld)
-    ssl_upper_pyramid = create_subregion(ssl_pyramid, "Shifting Sand Land - Upper Pyramid", "Shifting Sand Land - Inside the Ancient Pyramid",
-                                         "Shifting Sand Land - Pyramid Puzzle",
-                                         "Shifting Sand Land - Pyramid Platform Triggers 1-Up")
+    ssl_upper_pyramid = create_subregion(ssl_pyramid, "Shifting Sand Land - Upper Pyramid", 
+                                         "Shifting Sand Land - Inside the Ancient Pyramid",
+                                         "Shifting Sand Land - Pyramid Puzzle")
     ssl_eyerok_arena = create_subregion(
         ssl_pyramid,
         "Shifting Sand Land - Eyerok Arena",
