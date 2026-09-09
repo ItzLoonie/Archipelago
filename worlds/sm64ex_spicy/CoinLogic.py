@@ -389,7 +389,8 @@ def evaluate_bob_omb_battlefield_coins(
             "island_partial_flight_ring_coins",
             "Four complete vertical rings reached with Wing Cap and Triple Jump",
             32,
-            partial_route_available and has_wing_cap_flight and has_vertical_coin_rings,
+            has_island and has_wing_cap_flight and has_vertical_coin_rings,
+            counted=partial_route_available and has_wing_cap_flight and has_vertical_coin_rings,
         ),
         coin_source(
             "island_partial_flight_center_coins",

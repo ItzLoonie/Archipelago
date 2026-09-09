@@ -1353,6 +1353,7 @@ def _build_catalog() -> tuple[CoinSourceDefinition, ...]:
                     ("island_first_ring_easy_coins",) if i in range(25, 28) else
                     ("island_partial_first_ring_three_coins", "island_full_trick_vertical_ring_coins", "island_cannon_vertical_ring_coins") if i in range(28, 31) else
                     ("island_partial_first_ring_two_coins", "island_full_trick_vertical_ring_coins", "island_cannon_vertical_ring_coins") if i in range(31, 33) else
+                    ("island_partial_flight_ring_coins", "island_cannon_vertical_ring_coins") if i in range(1, 9) else
                     ("island_partial_flight_ring_coins", "island_full_trick_vertical_ring_coins", "island_cannon_vertical_ring_coins") if i in partial_flight_ring_indices else
                     ("island_full_trick_vertical_ring_coins", "island_cannon_vertical_ring_coins")
                     for i in range(1, 41))),
