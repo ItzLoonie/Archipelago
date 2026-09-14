@@ -31,6 +31,7 @@ from .Locations import location_table, SM64Location, coin_count_check_course_dat
     get_global_coin_count_check_location_names, get_global_coin_count_caps, location_name_groups
 from .CoinChecks import CoinOutputID, coin_output_by_name, coin_output_region_name, select_individual_coin_outputs, \
     get_enabled_coin_check_kinds, get_enemy_coin_checks_enabled
+from .CoinLogic import COIN_EVALUATORS
 from .Music import build_music_slot_data
 from .Options import sm64_options_groups, SM64Options, coin_star_requirement_option_names, \
     move_randomizer_option_name_by_action, secret_stage_coin_count_max_coin_option_names, \
@@ -81,6 +82,39 @@ class SM64Web(WebWorld):
     option_groups = sm64_options_groups
 
 
+_COIN_EVALUATOR_COURSE_NAMES = tuple(COIN_EVALUATORS)
+
+_COIN_EVALUATOR_REGION_COURSE_OVERRIDES = {
+    "Castle Grounds": "Castle",
+    "Castle Basement": "Castle",
+    "Castle First Floor": "Castle",
+    "Castle Second Floor": "Castle",
+    "Castle Third Floor": "Castle",
+    "Castle Courtyard": "Castle",
+    "Tick Tock Clock Stopped": "Tick Tock Clock",
+    "Tick Tock Clock Moving": "Tick Tock Clock",
+}
+
+
+def _coin_evaluator_course_for_item_name(item_name: str) -> typing.Optional[str]:
+    for course_name in _COIN_EVALUATOR_COURSE_NAMES:
+        if item_name.startswith(f"{course_name} - "):
+            return course_name
+    return None
+
+
+def _coin_evaluator_course_for_region_name(region_name: str) -> typing.Optional[str]:
+    override = _COIN_EVALUATOR_REGION_COURSE_OVERRIDES.get(region_name)
+    if override is not None:
+        return override
+    for course_name in _COIN_EVALUATOR_COURSE_NAMES:
+        if region_name == course_name \
+                or region_name.startswith(f"{course_name} - ") \
+                or region_name.startswith(f"{course_name} ("):
+            return course_name
+    return None
+
+
 class SM64World(World):
     """ 
     The first Super Mario game to feature 3D gameplay, it features freedom of movement within a large open world based on polygons,
@@ -116,29 +150,37 @@ class SM64World(World):
     filler_count: int
 
     @staticmethod
-    def _clear_coin_evaluation_cache(state: CollectionState, player: int) -> None:
+    def _clear_coin_evaluation_cache(
+            state: CollectionState, player: int, course_name: typing.Optional[str] = None) -> None:
         cache = getattr(state, "sm64_coin_evaluation_cache", None)
         if cache is None:
             return
-        for cache_key in tuple(cache):
-            if cache_key[0] == player:
-                del cache[cache_key]
+        if course_name is None:
+            for cache_key in tuple(cache):
+                if cache_key[0] == player:
+                    del cache[cache_key]
+            return
+        cache.pop((player, course_name), None)
+        cache.pop((player, "global"), None)
 
     def collect(self, state: CollectionState, item: Item) -> bool:
         changed = super().collect(state, item)
         if changed:
-            self._clear_coin_evaluation_cache(state, self.player)
+            self._clear_coin_evaluation_cache(
+                state, self.player, _coin_evaluator_course_for_item_name(item.name))
         return changed
 
     def remove(self, state: CollectionState, item: Item) -> bool:
         changed = super().remove(state, item)
         if changed:
-            self._clear_coin_evaluation_cache(state, self.player)
+            self._clear_coin_evaluation_cache(
+                state, self.player, _coin_evaluator_course_for_item_name(item.name))
         return changed
 
     def reached_region(self, state: CollectionState, region: Region) -> None:
         super().reached_region(state, region)
-        self._clear_coin_evaluation_cache(state, self.player)
+        self._clear_coin_evaluation_cache(
+            state, self.player, _coin_evaluator_course_for_region_name(region.name))
 
     star_costs: typing.Dict[str, int]
     coin_count_check_location_names: typing.Tuple[str, ...]
@@ -709,22 +751,37 @@ class SM64World(World):
             and item.name in self._optional_fill_reduction_names()
             and self.random.randrange(2) == 0
         ]
+        if not candidates:
+            return
         self.random.shuffle(candidates)
+
+        candidate_set = set(candidates)
+        base_state = sweep_from_pool(
+            self.multiworld.state,
+            [pool_item for pool_item in progitempool if pool_item not in candidate_set],
+        )
+        real_locations = [
+            location for location in self.multiworld.get_locations(self.player)
+            if location.address is not None
+        ]
+        locations_to_check = [
+            location for location in real_locations
+            if not location.can_reach(base_state)
+        ]
+        base_has_beaten_game = self.multiworld.has_beaten_game(base_state, self.player)
+
+        remaining_candidates = list(candidates)
         for item in candidates:
-            # Match restrictive fill's maximum-exploration state. Items already
-            # moved to usefulitempool retain their progression classification,
-            # so get_all_state() would incorrectly collect them here.
-            state = sweep_from_pool(
-                self.multiworld.state,
-                [pool_item for pool_item in progitempool if pool_item is not item],
-            )
+            remaining_candidates.remove(item)
+            state = sweep_from_pool(base_state, remaining_candidates)
             real_locations_reachable = all(
-                location.can_reach(state)
-                for location in self.multiworld.get_locations(self.player)
-                if location.address is not None
+                location.can_reach(state) for location in locations_to_check
             )
-            if real_locations_reachable and self.multiworld.has_beaten_game(state, self.player):
+            if real_locations_reachable and (
+                    base_has_beaten_game or self.multiworld.has_beaten_game(state, self.player)):
                 downgrade((item,))
+            else:
+                remaining_candidates.append(item)
 
     def create_item(self, name: str) -> Item:
         data = item_data_table[name]
